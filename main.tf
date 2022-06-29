@@ -13,7 +13,7 @@ resource "google_compute_address" "static" {
 }
 
 resource "google_compute_instance" "default" {
-  count        = 0
+  count        = 2
 
   name         = "terraform-version-control-${count.index}"
   machine_type = "e2-micro"
