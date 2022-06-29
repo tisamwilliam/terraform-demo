@@ -5,7 +5,7 @@ provider "google" {
 }
 
 resource "google_compute_instance" "default" {
-  count        = 0
+  count        = 1
 
   name         = "terraform-demo-${count.index}"
   machine_type = "e2-micro"
@@ -13,6 +13,9 @@ resource "google_compute_instance" "default" {
 
   network_interface {
     network = "default"
+
+    access_config {
+    }
   }
 
   boot_disk {
