@@ -4,10 +4,19 @@ provider "google" {
   zone    = "asia-east1-c"
 }
 
+data "google_compute_image" "centos_image" {
+  family  = "centos-stream-8"
+  project = "centos-cloud"
+}
+
+resource "google_compute_address" "static" {
+  name = "ipv4-address"
+}
+
 resource "google_compute_instance" "default" {
   count        = 1
 
-  name         = "terraform-demo-${count.index}"
+  name         = "terraform-version-control-${count.index}"
   machine_type = "e2-micro"
   zone         = "asia-east2-a"
 
@@ -15,12 +24,13 @@ resource "google_compute_instance" "default" {
     network = "default"
 
     access_config {
+      nat_ip = google_compute_address.static.address
     }
   }
 
   boot_disk {
     initialize_params {
-      image = "centos-cloud/centos-stream-8"
+      image = data.google_compute_image.centos_image.self_link
     }
   }
 }
