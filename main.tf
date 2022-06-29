@@ -5,7 +5,7 @@ provider "google" {
 }
 
 resource "google_compute_instance" "default" {
-  count        = 2
+  count        = 3
 
   name         = "terraform-demo-${count.index}"
   machine_type = "e2-micro"
