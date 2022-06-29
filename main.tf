@@ -1,6 +1,5 @@
 provider "google" {
   project = "openshift-build-354002"
-  region  = "asia-east1"
 }
 
 data "google_compute_image" "centos_image" {
@@ -18,7 +17,7 @@ resource "google_compute_instance" "default" {
 
   name         = "terraform-version-control-${count.index}"
   machine_type = "e2-micro"
-  zone         = "asia-east2-a"
+  zone         = "asia-east1-a"
 
   network_interface {
     network = "default"
