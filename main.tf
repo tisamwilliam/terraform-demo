@@ -1,7 +1,6 @@
 provider "google" {
   project = "openshift-build-354002"
   region  = "asia-east1"
-  zone    = "asia-east1-c"
 }
 
 data "google_compute_image" "centos_image" {
@@ -23,7 +22,7 @@ resource "google_compute_instance" "default" {
   network_interface {
     network = "default"
     access_config {
-      nat_ip = data.google_compute_address.static.address
+      nat_ip = google_compute_address.static.address
     }
   }
 
