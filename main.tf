@@ -10,6 +10,7 @@ data "google_compute_image" "centos_image" {
 
 resource "google_compute_address" "static" {
   name = "ipv4-address"
+  region  = "asia-east1"
 }
 
 resource "google_compute_instance" "default" {
