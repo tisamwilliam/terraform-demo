@@ -8,7 +8,7 @@ data "tfe_outputs" "foo" {
 }
 
 resource "google_compute_instance" "default" {
-  count        = 2
+  count        = 1
 
   name         = "terraform-test-${count.index}"
   machine_type = "e2-micro"
